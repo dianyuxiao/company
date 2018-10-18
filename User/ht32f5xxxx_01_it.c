@@ -173,6 +173,13 @@ void SysTick_Handler(void)
 
 	
 }
+vu8 KeyValue = 0;
+void BFTM0_IRQHandler(void)
+{
+  
+	KeyValue = touchkey_scan();
+  BFTM_ClearFlag(HT_BFTM0);
+}
 /*********************************************************************************************************//**
  * @brief   This function handles EXIT line 2~3 interrupt.
  * @retval  None
@@ -188,7 +195,6 @@ void EXTI2_3_IRQHandler(void)
 	if(EXTI_GetEdgeStatus(AFIO_EXTI_CH_3,EXTI_NEGATIVE_EDGE)==SET)
 	{	
 		Search_Card = 1;
-		get_key = touchkey_scan();
 		touch_on = 1;
 		GoSleep_1ms = 10000;
 		WakeUpSrc = WakeUp_SRC_Touch;
@@ -238,6 +244,9 @@ void EVWUP_IRQHandler(void)
 	}
 
 }
+
+
+
 
 /**
   * @}

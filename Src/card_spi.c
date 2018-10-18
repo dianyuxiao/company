@@ -30,6 +30,7 @@ void IC_GPIO_Init(void)
 	 
       GPIO_InputConfig(SPI_MASTER_MISO_GPIO_ID,SPI_MASTER_MISO_AFIO_PIN,ENABLE);
 	  
+	 GPIO_WriteOutBits(RES_IO_GPIO_PORT,RES_IO_PIN,SET);
 	  SET_SPI_CS;//CS端口为高电平，cs无效 
 		
  }
@@ -58,10 +59,10 @@ void WriteRawRC(unsigned char Address, unsigned char value)
 		{
 			CLR_SPI_MOSI;
 		} 
-        //us_delay(100);  
+        us_delay(100);  
 		CLR_SPI_CK;
    
-        //us_delay(100);  
+        us_delay(100);  
 		SET_SPI_CK;
         
 		ucAddr <<= 1;
@@ -78,10 +79,10 @@ void WriteRawRC(unsigned char Address, unsigned char value)
 		{
 			CLR_SPI_MOSI;
 		} 
-        //us_delay(100);  
+        us_delay(100);  
 		CLR_SPI_CK;
    
-        //us_delay(100);  
+        us_delay(100);  
 		SET_SPI_CK;
         
 		value <<= 1;
@@ -112,10 +113,10 @@ unsigned char ReadRawRC(unsigned char Address)
 		{
 			CLR_SPI_MOSI;
 		} 
-        //us_delay(100);  
+        us_delay(100);  
 		CLR_SPI_CK;
    
-        //us_delay(100);  
+        us_delay(100);  
 		SET_SPI_CK;
         
 		ucAddr <<= 1;
@@ -126,9 +127,9 @@ unsigned char ReadRawRC(unsigned char Address)
 		dataValue <<=1;
         CLR_SPI_CK;  
         if(STU_SPI_MISO) dataValue|=0x01;
-		//us_delay(100); 
+		us_delay(100); 
 		SET_SPI_CK;
-        //us_delay(100);  
+        us_delay(100);  
     }  
 	
 	SET_SPI_CS;

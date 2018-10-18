@@ -42,17 +42,17 @@ int main(void)
 	while(1)
 	{			
 
-        switch(WakeUpSrc)
+        switch(WakeUp_SRC_Touch)
         {
             case WakeUp_SRC_Touch:           //Ë¢¿¨  °´¼ü
-				if(Search_Card == 1)
-				 {
-				    Search_Card = 0;
+//				if(Search_Card == 1)
+//				 {
+//				    Search_Card = 0;
 			        Search_Compare_Card();
-			     } 
+//			     } 
 
 			
-                    Search_Compare_KeyValue();
+                //    Search_Compare_KeyValue();
 				 
             break;
             case WakeUp_SRC_Admin:           //×¢²á

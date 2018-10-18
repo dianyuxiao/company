@@ -83,7 +83,6 @@ int16_t key_config_init(void)
 
 
 //volatile uint8_t  key_flags=0xFF;
-volatile uint16_t key_value=0; 
 uint16_t    uwTouchBits=0;
 uint8_t   SameKey_Cnt=0;
 uint16_t KeyOld;

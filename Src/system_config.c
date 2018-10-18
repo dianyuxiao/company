@@ -221,14 +221,13 @@ void Search_Compare_Card(void)
 
 }
 
-vu8 KeyValue = 0;
+extern vu8 KeyValue;
 vu8 GetValue_Flag = 0;
 void Search_Compare_KeyValue(void)
 {
 	KeyType EnterPwd = {0};
 	KeyType AdminPwd = {0};
 	u16 Unlocker;
-	KeyValue = touchkey_scan();
 
 	if(KeyValue != 0)
 	{
@@ -442,6 +441,8 @@ void GotoSleep(void)		//深度睡眠 1 模式
 		AFIO_GPxConfig(GPIO_PC, GPIO_PIN_0, AFIO_FUN_GPIO);
 		GPIO_DirectionConfig(HT_GPIOB, GPIO_PIN_15, GPIO_DIR_OUT);
 		GPIO_DirectionConfig(HT_GPIOC, GPIO_PIN_0, GPIO_DIR_OUT);
+		
+		//*************************BFTM定时器定时扫描按键***************************
 	
 	}
 	OLED_Display_On();
