@@ -222,84 +222,86 @@ void Search_Compare_Card(void)
 }
 
 vu8 KeyValue = 0;
-u8 KeyOld;
+vu8 GetValue_Flag = 0;
 void Search_Compare_KeyValue(void)
 {
 	KeyType EnterPwd = {0};
 	KeyType AdminPwd = {0};
 	u16 Unlocker;
-	u8 KeyPress;
-	u8 KeyCurrent = 0;
-	u8 KeyChange = 0;
-	KeyCurrent = touchkey_scan();
-	
-	KeyValue = KeyCurrent & (KeyCurrent ^ KeyOld);
-	KeyOld = KeyCurrent;
+	KeyValue = touchkey_scan();
 
 	if(KeyValue != 0)
 	{
-
-		if(DisableFunction.PwdErrNum < MaxErrNum)				//错误密码没有到限制次数
+		if(GetValue_Flag==0)
 		{
-			EnterPwd = Show_Password(1, 3,KeyValue, 15, 1);	//(X,Y,限定长度,明文)
-			//直接开锁 解算密码
-			if(EnterPwd.LastKey == '#')
+			GetValue_Flag=0x01;
+			if(DisableFunction.PwdErrNum < MaxErrNum)				//错误密码没有到限制次数
 			{
-				if(EnterPwd.len == 1 && EnterPwd.Num[0] == '0')
+				EnterPwd = Show_Password(1, 3,KeyValue, 15, 1);	//(X,Y,限定长度,明文)
+				//直接开锁 解算密码
+				if(EnterPwd.LastKey == '#')
 				{
-					OLED_Clear();
-					OLED_ShowString(0, 0, "Admin Password:", 16);
-					AdminPwd = KeyEnterPwdLoop(0, 4, 14, 1);
-					if(AdminPwd.LastKey == '*')	//按取消键
+					if(EnterPwd.len == 1 && EnterPwd.Num[0] == '0')
 					{
-						KeyValue = 0x00;
-					}
-					if(AdminPwd.LastKey == '#')	//按取消键
-					{
-						if(PwdKeyIsExists(AdminPwd, Flash_PasswordAddress, 20) != 0)
-							Set_DateTime();
-
-					}
-					
-				}
-				else
-				{
-					Unlocker = VirtualPassword(EnterPwd, Flash_PasswordAddress);
-					//u16 Unlocker = PwdKeyIsExists(EnterPwd,Flash_PasswordAddress,20);
-					if(Unlocker == 0)		//校验不通过		
-					{
-						Show_InputInvalid();
-						key.len = 0;							
-						GoSleep_1ms = GoSleepTime;
-						DisableFunction.PwdErrNum++;
-						if(DisableFunction.PwdErrNum >= MaxErrNum)	
+						OLED_Clear();
+						OLED_ShowString(0, 0, "Admin Password:", 16);
+						AdminPwd = KeyEnterPwdLoop(0, 4, 14, 1);
+						if(AdminPwd.LastKey == '*')	//按取消键
 						{
-							DisableFunction.DisabEndTime = (HT_RTC->CNT) + FuncDisTime;
+							KeyValue = 0x00;
 						}
-					}	
-					else 				//开锁成功					
-					{	
-						Unlock();                   //开门
-						Show_DoorOpen();
-						ms_delay(500);
-						key.len = 0;
-						DisableFunction.PwdErrNum = 0;
+						if(AdminPwd.LastKey == '#')	//按取消键
+						{
+							if(PwdKeyIsExists(AdminPwd, Flash_PasswordAddress, 20) != 0)
+								Set_DateTime();
+
+						}
+						
+					}
+					else
+					{
+						Unlocker = VirtualPassword(EnterPwd, Flash_PasswordAddress);
+						//u16 Unlocker = PwdKeyIsExists(EnterPwd,Flash_PasswordAddress,20);
+						if(Unlocker == 0)		//校验不通过		
+						{
+							Show_InputInvalid();
+							key.len = 0;							
+							GoSleep_1ms = GoSleepTime;
+							DisableFunction.PwdErrNum++;
+							if(DisableFunction.PwdErrNum >= MaxErrNum)	
+							{
+								DisableFunction.DisabEndTime = (HT_RTC->CNT) + FuncDisTime;
+							}
+						}	
+						else 				//开锁成功					
+						{	
+							Unlock();                   //开门
+							Show_DoorOpen();
+							ms_delay(500);
+							key.len = 0;
+							DisableFunction.PwdErrNum = 0;
+
+						}
 
 					}
-
 				}
+				else if(EnterPwd.LastKey == '*')		//按返回
+				{	
+					OLED_Clear();
+					OLED_ShowString(0,3,"ReInput Password",16);
+				}
+			
 			}
-			else if(EnterPwd.LastKey == '*')		//按返回
-			{	
-				OLED_Clear();
-				OLED_ShowString(0,3,"ReInput Password",16);
+			else
+			{
+				Show_FuncDisable(DisableFunction);		//提示 该（解锁）方式暂时失能
+				GoSleep_1ms = 3000;
 			}
 		}
-		else
-		{
-			Show_FuncDisable(DisableFunction);		//提示 该（解锁）方式暂时失能
-			GoSleep_1ms = 3000;
-		}
+	}
+	else
+	{
+		GetValue_Flag=0;
 	}
 
     if(DisableFunction.PwdErrNum >= MaxErrNum)

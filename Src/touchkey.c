@@ -82,19 +82,36 @@ int16_t key_config_init(void)
 }
 
 
-volatile uint8_t  key_flags=0xFF;
+//volatile uint8_t  key_flags=0xFF;
 volatile uint16_t key_value=0; 
+uint16_t    uwTouchBits=0;
+uint8_t   SameKey_Cnt=0;
+uint16_t KeyOld;
 int16_t touchkey_scan(void)         // 定时扫描程序负责生成KEY信息
 {
     uint8_t     ucKey=0; 
     uint8_t     i=0;   
     uint16_t    uwBit;
-     uint16_t    uwTouchBits=0;
+	uint16_t KeyCurrent = 0;
 	uint8_t     key_BS83B16C[2];
-    u8 KeyPress;
     fun_BS83B16A_ReadData(KEY_OUT_ONE,key_BS83B16C,2); 
-    uwTouchBits =((uint16_t)key_BS83B16C[1]<<8) | ((uint16_t)key_BS83B16C[0]);
-
+  //  uwTouchBits =((uint16_t)key_BS83B16C[1]<<8) | ((uint16_t)key_BS83B16C[0]);
+	KeyCurrent =((uint16_t)key_BS83B16C[1]<<8) | ((uint16_t)key_BS83B16C[0]);
+//	uwTouchBits = KeyCurrent & (KeyCurrent ^ KeyOld);
+//	KeyOld = KeyCurrent;
+	if(KeyCurrent==KeyOld)
+	{
+		SameKey_Cnt++;
+		if(SameKey_Cnt>3)
+		{
+			uwTouchBits=KeyCurrent;
+		}
+	}
+	else
+	{
+		KeyOld=KeyCurrent;
+		SameKey_Cnt=0;
+	}
     for(i=0;i<MAX_KEY_NUM;i++)
     {
         uwBit=(uwTouchBits>>i)&0x0001; 

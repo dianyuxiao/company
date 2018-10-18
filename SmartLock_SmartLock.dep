@@ -653,7 +653,7 @@ I (.\Inc\touchkey.h)(0x5B95DD42)
 I (.\Inc\delay.h)(0x5B91EE0E)
 I (.\Inc\string.h)(0x5AB340B4)
 I (.\Inc\oled_app.h)(0x5BADC7E6)
-F (.\Src\touchkey.c)(0x5BC6EED2)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\ -I.\Library\CMSIS\Include -I.\Library\Device\Holtek\HT32F5xxxx\Include -I.\Library\HT32F5xxxx_Driver\inc -I.\Library\HT32_USBD_Library\inc -I.\Utilities -I.\Inc -I.\Config-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Holtek\HT32F5xxxx-DUSE_HT32F52344_54 -DUSE_HT32_DRIVER -DUSE_HT32F52354_SK -DUSE_HT32F52344_54 -DUSE_MEM_HT32F52354-o .\output\touchkey.o --omf_browse .\output\touchkey.crf --depend .\output\touchkey.d)
+F (.\Src\touchkey.c)(0x5BC7F126)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\ -I.\Library\CMSIS\Include -I.\Library\Device\Holtek\HT32F5xxxx\Include -I.\Library\HT32F5xxxx_Driver\inc -I.\Library\HT32_USBD_Library\inc -I.\Utilities -I.\Inc -I.\Config-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Holtek\HT32F5xxxx-DUSE_HT32F52344_54 -DUSE_HT32_DRIVER -DUSE_HT32F52354_SK -DUSE_HT32F52344_54 -DUSE_MEM_HT32F52354-o .\output\touchkey.o --omf_browse .\output\touchkey.crf --depend .\output\touchkey.d)
 I (.\Library\HT32F5xxxx_Driver\inc\ht32.h)(0x59959B2C)
 I (.\Library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x5B31BE40)
 I (.\Library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x5B31BE12)
@@ -701,7 +701,7 @@ I (.\Inc\touchkey.h)(0x5B95DD42)
 I (.\Inc\delay.h)(0x5B91EE0E)
 I (.\Inc\OLED.h)(0x5BC69A1E)
 I (.\Inc\ht32_board_config.h)(0x5BC6B0B6)
-F (.\Src\system_config.c)(0x5BC6F8FE)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\ -I.\Library\CMSIS\Include -I.\Library\Device\Holtek\HT32F5xxxx\Include -I.\Library\HT32F5xxxx_Driver\inc -I.\Library\HT32_USBD_Library\inc -I.\Utilities -I.\Inc -I.\Config-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Holtek\HT32F5xxxx-DUSE_HT32F52344_54 -DUSE_HT32_DRIVER -DUSE_HT32F52354_SK -DUSE_HT32F52344_54 -DUSE_MEM_HT32F52354-o .\output\system_config.o --omf_browse .\output\system_config.crf --depend .\output\system_config.d)
+F (.\Src\system_config.c)(0x5BC7EFC6)(-c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\ -I.\Library\CMSIS\Include -I.\Library\Device\Holtek\HT32F5xxxx\Include -I.\Library\HT32F5xxxx_Driver\inc -I.\Library\HT32_USBD_Library\inc -I.\Utilities -I.\Inc -I.\Config-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include-I C:\Keil_v5\ARM\Inc\Holtek\HT32F5xxxx-DUSE_HT32F52344_54 -DUSE_HT32_DRIVER -DUSE_HT32F52354_SK -DUSE_HT32F52344_54 -DUSE_MEM_HT32F52354-o .\output\system_config.o --omf_browse .\output\system_config.crf --depend .\output\system_config.d)
 I (.\Library\HT32F5xxxx_Driver\inc\ht32.h)(0x59959B2C)
 I (.\Library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x5B31BE40)
 I (.\Library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x5B31BE12)
